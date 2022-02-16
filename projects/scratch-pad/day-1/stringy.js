@@ -14,8 +14,8 @@
  */
 function length(string) {
     // YOUR CODE BELOW HERE //
+    return string.length
     
-
 
     // YOUR CODE ABOVE HERE //
 }
@@ -25,6 +25,7 @@ function length(string) {
  */
 function toLowerCase(string) {
     // YOUR CODE BELOW HERE //
+    return string.toLowerCase()
 
 
 
@@ -36,6 +37,7 @@ function toLowerCase(string) {
  */
 function toUpperCase(string) {
     // YOUR CODE BELOW HERE //
+    return string.toUpperCase()
 
 
 
@@ -57,6 +59,7 @@ function toUpperCase(string) {
  */
 function toDashCase(string) {
     // YOUR CODE BELOW HERE //
+    return string.toDashCase()
 
 
 
@@ -77,6 +80,12 @@ function toDashCase(string) {
  */
 function beginsWith(string, char) {
     // YOUR CODE BELOW HERE //
+    if (string[1].localCompare(char[1]) === 0){
+        return true
+    } else {
+        return false
+    }
+    
 
     
 
@@ -110,6 +119,8 @@ function endsWith(string, char) {
  */
 function concat(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
+    //console.log(stringOne.concat(' ', stringTwo));
+    return stringOne + stringTwo
 
 
 
@@ -129,6 +140,7 @@ function concat(stringOne, stringTwo) {
 function join(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
     var args = Array.from(arguments);
+    return args.join('')
 
 
     // YOUR CODE ABOVE HERE //
@@ -145,6 +157,11 @@ function join(stringOne, stringTwo) {
  */
 function longest(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
+    if (stringOne.length > stringTwo.length) {
+        return stringOne
+    } else {
+        return stringTwo
+    }
 
 
 
@@ -160,6 +177,15 @@ function longest(stringOne, stringTwo) {
  */
 function sortAscending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
+    if (stringOne[1] < stringTwo[1]){
+        return 1
+    }
+    if (stringOne[1] > stringTwo[1]){
+        return -1
+    }
+    if (stringOne[1] === stringTwo[1]){
+        return 0
+    }
 
 
 
@@ -176,6 +202,15 @@ function sortAscending(stringOne, stringTwo) {
  */
 function sortDescending(stringOne, stringTwo) {
     // YOUR CODE BELOW HERE //
+    if (stringOne[1] > stringTwo[1]){
+        return 1
+    }
+    if (stringOne[1] < stringTwo[1]){
+        return -1
+    }
+    if (stringOne[1] === stringTwo[1]){
+        return 0
+    }
 
 
 
