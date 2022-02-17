@@ -95,7 +95,7 @@ var friends = [];
 function getRandom(animals){
   return animals[Math.random()]
 }
-
+console.log(friends);
 
 
 

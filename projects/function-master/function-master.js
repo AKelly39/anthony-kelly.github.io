@@ -4,7 +4,7 @@
 
 function objectValues(object) {
     var arr = [];
-    for (key in object){
+    for (var key in object){
         arr.push(object[key]);
     }
     return arr;
@@ -16,6 +16,13 @@ function objectValues(object) {
 //////////////////////////////////////////////////////////////////////
 
 function keysToString(object) {
+    var arr = [];
+    for (var key in object){
+        arr.push(object.key);
+    }
+    arr.join(" ");
+    return arr;
+    
 
 }
 
@@ -24,6 +31,11 @@ function keysToString(object) {
 //////////////////////////////////////////////////////////////////////
 
 function valuesToString(object) {
+    var arr = [];
+    for (var key in object){
+        arr.push(object[key]);
+    }
+    return arr.join(" ");
     
 }
 
@@ -64,6 +76,9 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
+    for (key in object){
+        
+    }
 
 }
 
