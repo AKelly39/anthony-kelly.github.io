@@ -15,3 +15,14 @@
 2. In your terminal, enter => git commit -m "desciption of changes"
 3. In your terminal, enter => git push
 
+
+
+
+**Repository**
+1. Top corner => File => Open file
+2. In searchbar delete everything but /workspace/
+3. Select Lodown below
+
+
+
+
