@@ -53,24 +53,30 @@ function makeContactList() {
         // we implemented the length api for you //
         length: function() {
             return contacts.length;
-        }
-        /*
+        },
+        
         addContact: function(contact) {
             contacts.push(contact);
-        }
-        findContact: function() {
-            if ( ) {
-                return contact
+        },
+        findContact: function(fullName) {
+            if (fullName === contact.nameFirst + " " + contact.nameLast ) {
+                return contact;
             } else {
-                return undefined
+                return undefined;
             }
-        }
-        removeContact: function() {
+        },
+        removeContact: function(contact) {
+            const index = contacts.indexOf(contact);
+            if (index > -1) {
+                array.splice(index, 1); // 2nd parameter means remove one item only
+            }
 
-        }
+            //contacts.
+
+        },
         printAllContactNames: function() {
 
-        } */
+        } 
     }
 }
 

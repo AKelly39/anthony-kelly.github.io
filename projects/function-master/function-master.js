@@ -18,10 +18,10 @@ function objectValues(object) {
 function keysToString(object) {
     var arr = [];
     for (var key in object){
-        arr.push(object.key);
+        arr.push(`${key}`);
     }
-    arr.join(" ");
-    return arr;
+    return arr.join(" ");
+    
     
 
 }
@@ -32,10 +32,16 @@ function keysToString(object) {
 
 function valuesToString(object) {
     var arr = [];
+    var ray = [];
     for (var key in object){
         arr.push(object[key]);
     }
-    return arr.join(" ");
+    for (var i = 0; i > arr.length; i++){
+        if (typeOf(arr[i])  === "string"){
+            ray.push(arr[i]);
+        }
+    }
+    return ray.join(" ");
     
 }
 
@@ -52,7 +58,7 @@ function arrayOrObject(collection) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeWord(string) {
-    
+    return string.charAt(0).toUpperCase() + string.substring(1);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -60,7 +66,12 @@ function capitalizeWord(string) {
 //////////////////////////////////////////////////////////////////////
 
 function capitalizeAllWords(string) {
-    
+    var splitStr = string.toLowerCase().split(' ');
+   for (var i = 0; i < splitStr.length; i++) {
+       splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+   }
+   
+   return splitStr.join(' '); 
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -68,6 +79,7 @@ function capitalizeAllWords(string) {
 //////////////////////////////////////////////////////////////////////
 
 function welcomeMessage(object) {
+    return "Welcome " + object.name + "!";
 
 }
 
@@ -76,9 +88,9 @@ function welcomeMessage(object) {
 //////////////////////////////////////////////////////////////////////
 
 function profileInfo(object) {
-    for (key in object){
-        
-    }
+    //for (key in object){  
+    //}
+    return object.name + " is a " + object.species;
 
 }
 
@@ -95,6 +107,11 @@ function maybeNoises(object) {
 //////////////////////////////////////////////////////////////////////
 
 function hasWord(string, word) {
+    if (string.includes(word)){
+        return true;
+    } else {
+        return false;
+    }
 
 }
 
@@ -103,6 +120,8 @@ function hasWord(string, word) {
 //////////////////////////////////////////////////////////////////////
 
 function addFriend (name, object) {
+    object.friends.push(name);
+    return object;
 
 }
 
@@ -111,6 +130,11 @@ function addFriend (name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function isFriend(name, object) {
+    if (object.friends.includes(name)){
+        return true;
+    } else {
+        return false;
+    }
 
 }
 
@@ -119,6 +143,9 @@ function isFriend(name, object) {
 //////////////////////////////////////////////////////////////////////
 
 function nonFriends(name, array) {
+    for (var i = 0; i < array.length; i++){
+        
+    }
 
 }
 

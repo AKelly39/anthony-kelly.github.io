@@ -46,28 +46,29 @@ _.identity = function (value) {
 * _.typeOf([1,2,3]) -> "array"
 */
 
-/*
+
 _.typeOf = function(value) {
    if (typeOf(value) === string){
         return "string"; 
     } else if (typeOf(value) === array){
-        return "string"; 
+        return "array"; 
     } else if (typeOf(value) === object){
-        return "string"; 
+        return "object"; 
     } else if (typeOf(value) === number){
-        return "string"; 
+        return "number"; 
     }else if (typeOf(value) === undefined){
-        return "string"; 
+        return "undefined"; 
     }else if (typeOf(value) === boolean){
         return "boolean"; 
     }else if (typeOf(value) === null){
         return "null"; 
-    }else if (typeOf(value) === function){
-        return "function"; 
     }
+    //else if (typeOf(value) === function){
+    //    return "function"; 
+    //}
 
 }
-*/
+
 
 /** _.first
 * Arguments:
@@ -88,19 +89,28 @@ _.typeOf = function(value) {
 */
 
 
-_.first = function (arr, num) {
-    if (typeof (arr) === "array") {
+_.first = function (array, num) {
+    var result = [];
+    if (typeof (array) === "array") {
         if (num === null || typeof (num) !== "number") {
-            return arr[0];
+            //result.push(arr[0]);
+            return array[0];
+        } else if (typeof (num) === "number" && num > array.length) {
+            for (var i = 0; i < array.length; i++) {
+                result.push(array[i]);
+                //return arr[i];
+            }
         } else if (typeof (num) === "number") {
-            for (var i = 0; i < num; i++) {
-                return arr[i];
+            for (var i = 0; i <= num; i++) {
+                result.push(array[i]);
+                //return arr[i];
             }
         }
 
     } else {
         return [];
     }
+    return result;
 }
 
 
@@ -142,6 +152,21 @@ _.first = function (arr, num) {
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 
+_.indexOf = function(array, value){
+    var first = [];
+    if (array.includes(value)){
+        for (var i = 0; i < array.length; i++){
+            if (array[i] === value){
+                first.push(i);
+            }
+        }
+
+    } else {
+        return -1;
+    }
+    return first[0];
+}
+
 
 /** _.contains
 * Arguments:
@@ -157,6 +182,10 @@ _.first = function (arr, num) {
 * Examples:
 *   _.contains([1,"two", 3.14], "two") -> true
 */
+
+_.contains = function(array, value){
+    return (array.includes(value) ? true : false);
+}
 
 
 /** _.each
@@ -186,6 +215,18 @@ _.first = function (arr, num) {
 *   _.unique([1,2,2,4,5,6,5,2]) -> [1,2,4,5,6]
 */
 
+_.unique = function(array){
+    var diff = [];
+    for (let i = 0; i < array.length; i++){
+        if (array.indexOf(array[i]) === i){
+            diff.push(array[array.indexOf(array[i])]);
+        }
+    }
+    return diff;
+}
+
+
+
 
 /** _.filter
 * Arguments:
@@ -203,6 +244,19 @@ _.first = function (arr, num) {
 *   use _.each in your implementation
 */
 
+_.filter = function(array, callback){
+    var filtered = [];
+    for (let i = 0; i < array.length; i++){
+        if (callback(array[i], i, array)){
+            filtered.push(array[i]);
+        }
+    }
+    return filtered;
+}
+
+
+
+
 
 /** _.reject
 * Arguments:
@@ -216,6 +270,18 @@ _.first = function (arr, num) {
 * Examples:
 *   _.reject([1,2,3,4,5], function(e){return e%2 === 0}) -> [1,3,5]
 */
+
+_.reject = function(array, callback){
+    var rejected = [];
+    for (let i = 0; i < array.length; i++){
+        if (!callback(array[i], i, array)){
+            rejected.push(array[i]);
+        }
+    }
+    return rejected;
+}
+
+
 
 
 /** _.partition
@@ -238,6 +304,26 @@ _.first = function (arr, num) {
 */
 
 
+_.partition = function(array, callback){
+    var accepted = [];
+    var rejected = [];
+    var partitioned = [];
+    for (let i = 0; i < array.length; i++){
+        if (callback(array[i], i, array)){
+            accepted.push(array[i]);
+        } else { //if (!callback(array[i], i, array)){
+            rejected.push(array[i]);
+        }
+    }
+    partitioned.push(accepted);
+    partitioned.push(rejected);
+    return partitioned;
+    
+}
+
+
+
+
 /** _.map
 * Arguments:
 *   1) A collection
@@ -254,17 +340,17 @@ _.first = function (arr, num) {
 *   _.map([1,2,3,4], function(e){return e * 2}) -> [2,4,6,8]
 */
 
-_.map = function(collection,func){
+_.map = function(collection, callback){
     let mapped = [];
     if (Array.isArray(collection)) {
         for(var i = 0; i < collection.length; i++){
-            var result = func(collection[i], i, collection);
+            var result = callback(collection[i], i, collection);
             mapped.push(result);
         }
 
     } else {
         for (let key in collection){
-            mapped.push(func(collection[i], i, collection));
+            mapped.push(callback(collection[key], key, collection));
         }
 
     }
@@ -284,6 +370,12 @@ _.map = function(collection,func){
 * Examples:
 *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
 */
+
+_.pluck = function(array, key){
+    return array.map(o => o[key]);
+}
+
+
 
 
 /** _.every
@@ -307,9 +399,9 @@ _.map = function(collection,func){
 *   _.every([1,2,3], function(e){return e % 2 === 0}) -> false
 */
 
-_.each = function(collection, func){
+_.every = function(collection, callback){
     
-    if(func === undefined){
+    if(callback === undefined){
         if (Array.isArray(collection)){
             for (var i = 0; i < collection.length; i++){
                 if(!collection[i]){
@@ -329,7 +421,7 @@ _.each = function(collection, func){
     } else { 
         if (Array.isArray(collection)){
             for (let i = 0; i < collection; i++){
-                if (!func(collection[i], i, collection)){
+                if (!callback(collection[i], i, collection)){
                     return false;
                 }
 
@@ -363,6 +455,42 @@ _.each = function(collection, func){
 *   _.some([1,2,3], function(e){return e % 2 === 0}) -> true
 */
 
+_.some = function(collection, callback){
+    if(callback === undefined){
+        if (Array.isArray(collection)){
+            for (var i = 0; i < collection.length; i++){
+                if(!collection[i]){
+                    return false;
+                }
+            }
+
+        } else {
+            for (let key in Object){
+                if (!collection[key]){
+                    return false;
+                }
+            }
+
+        }
+    } else { 
+        if (Array.isArray(collection)){
+            for (let i = 0; i < collection; i++){
+                if (!callback(collection[i], i, collection)){
+                    return false;
+                }
+
+            }
+        }
+
+    }
+    return true;
+
+
+
+}
+
+
+
 
 /** _.reduce
 * Arguments:
@@ -383,17 +511,17 @@ _.each = function(collection, func){
 *   _.reduce([1,2,3], function(previousSum, currentValue, currentIndex){ return previousSum + currentValue }, 0) -> 6
 */
 
-_.reduce = function(array, func, seed) {
+_.reduce = function(array, callback, seed) {
     if(seed !== undefined){
         let accumulator = seed;
         for (var i = 0; i < array.length; i++){
-            accumulator = func(accumulator, array[i], i, array);
+            accumulator = callback(accumulator, array[i], i, array);
         }
 
-    } else{
-        accumulator = array[0];
+    } else {
+        let accumulator = array[0];
         for (var i = 0; i < array.length; i++){
-            accumulator = func(accumulator, array[i], i, array);
+            accumulator = callback(accumulator, array[i], i, array);
         }
 
     }

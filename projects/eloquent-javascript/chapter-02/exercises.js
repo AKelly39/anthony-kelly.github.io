@@ -15,18 +15,16 @@ function triangles(num) {
 
 function fizzBuzz() {
   
-  for (var n = 1; n <= 100; n++) {
-    //if (n % 15 === 0){
-    //  console.log("Fizzbuzz")
-    //}
-
-
-    if (n % 5 === 0){
-      console.log(n + "Buzz")
+  for (var n = 1; n <= 15; n++) {
+    if (n % 15 === 0){
+      console.log("Fizzbuzz")
+    } else if (n % 5 === 0){
+      console.log("Buzz")
     } else if (n % 3 === 0){
-      console.log(n + "Fizz")
+      console.log("Fizz")
     }
-  }
+  } 
+  
   
 }
 

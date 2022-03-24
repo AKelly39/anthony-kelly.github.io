@@ -29,13 +29,40 @@ var maleCount = function(array) {
 };
 
 var femaleCount = function(array) {
-    var females = _.filter(array, function(customer){
+    var females = _.reduce(array, function(customer){
         return customer.gender === "female";
     })
     return females.length;
 };
 
-var oldestCustomer;
+var oldestCustomer = function(array) {
+    
+    //let total = 0
+    /*
+    let oldestCustomer = [];
+     customers.reduce((prev, customer) => {
+        if (customer.age > customer.age) {
+            total = (curr.yearOfDeath - curr.yearOfBirth);
+            OldestPerson = curr
+        }
+    return prev;
+    });
+  return OldestPerson
+  */
+    var elder = {
+        name: "Bryan",
+        age: 1
+    }
+    for (let i = 0; i < array.length; i++){
+        if (array[i].age > elder){
+            elder = array[i];
+            return elder;
+        }
+
+    }
+    return e
+
+};
 
 var youngestCustomer;
 

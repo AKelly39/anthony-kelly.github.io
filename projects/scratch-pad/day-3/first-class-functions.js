@@ -13,6 +13,24 @@
  */
 function createGreaterThanFilter(base) {
     // YOUR CODE BELOW HERE //
+    if (typeof(base) === "number") {
+        return function(base){
+            if (7 < base){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    } else if (typeof(base) === "string"){
+        return function(base){
+            if (7 < base.length){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+        
     
     
     
@@ -71,6 +89,10 @@ function createEndsWithFilter(endsWith) {
  */
 function modifyStrings(strings, modify) {
     // YOUR CODE BELOW HERE //
+    var string = [];
+    for (var i = 0; i < strings.length; i++){
+        return modify(strings[i]);
+    }
     
     
     
